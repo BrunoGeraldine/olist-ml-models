@@ -1,4 +1,6 @@
 -- Databricks notebook source
+
+--Criando a variável Pedidos + tipo Pagamento e Parcelas
 WITH tb_pedidos AS (
 
   SELECT 
