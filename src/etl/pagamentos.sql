@@ -15,7 +15,7 @@ WITH tb_pedidos AS (
 
   WHERE t1.dtPedido < '2018-01-01'
   AND t1.dtPedido >= add_months('2018-01-01', -6)
-  AND idVendedor IS NOT NULL
+  AND idVendedor IS NOT NULL;
 
 ),
 
@@ -28,7 +28,7 @@ tb_join AS (
   FROM tb_pedidos AS t1
 
   LEFT JOIN silver.olist.pagamento_pedido AS t2
-  ON t1.idPedido = t2.idPedido
+  ON t1.idPedido = t2.idPedido;
 
 ),
 
@@ -42,7 +42,7 @@ tb_group AS (
   FROM tb_join
 
   GROUP BY idVendedor, descTipoPagamento
-  ORDER BY idVendedor, descTipoPagamento
+  ORDER BY idVendedor, descTipoPagamento;
 
 ),
 
@@ -73,7 +73,7 @@ tb_summary AS (
 
   FROM tb_group
 
-  GROUP BY idVendedor
+  GROUP BY idVendedor;
 
 ),
 
@@ -89,7 +89,7 @@ tb_cartao as (
 
   WHERE descTipoPagamento = 'credit_card'
 
-  GROUP BY idVendedor
+  GROUP BY idVendedor;
 
 )
 
@@ -104,4 +104,14 @@ SELECT
 FROM tb_summary as t1
 
 LEFT JOIN tb_cartao as t2
-ON t1.idVendedor = t2.idVendedor
+ON t1.idVendedor = t2.idVendedor;
+
+
+
+SELECT 
+  date(dtPedido) as dtPedido,
+  count(*) as qtPedido
+
+FROM silver.olist.pagamento_pedido;
+
+select sqlite_version()
