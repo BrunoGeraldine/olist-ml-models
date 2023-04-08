@@ -1,5 +1,4 @@
--- Databricks notebook source
-
+--Databricks notebook source
 --Criando a variável Pedidos + tipo Pagamento e Parcelas
 WITH tb_pedidos AS (
 
@@ -105,13 +104,3 @@ FROM tb_summary as t1
 
 LEFT JOIN tb_cartao as t2
 ON t1.idVendedor = t2.idVendedor;
-
-
-
-SELECT 
-  date(dtPedido) as dtPedido,
-  count(*) as qtPedido
-
-FROM silver.olist.pagamento_pedido;
-
-select sqlite_version()
